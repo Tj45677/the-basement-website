@@ -23,8 +23,8 @@ export default function Page() {
   const scrollShineY = useTransform(scrollY, [0, 650], ["-135vh", "135vh"]);
   const scrollShineOpacity = useTransform(scrollY, [0, 60, 360, 650, 900], [0, 0.85, 0.7, 0.25, 0]);
 
-  const mobileScrollShineY = useTransform(scrollY, [0, 420], ["-70vh", "70vh"]);
-  const mobileScrollShineOpacity = useTransform(scrollY, [0, 25, 240, 420, 620], [0, 1, 0.9, 0.35, 0]);
+  const mobileScrollShineY = useTransform(scrollY, [0, 260], ["-62vh", "62vh"]);
+  const mobileScrollShineOpacity = useTransform(scrollY, [0, 8, 135, 260, 420], [0, 1, 0.82, 0.22, 0]);
 
   const headerOpacity = useTransform(scrollY, [850, 1080], [0, 1]);
   const headerY = useTransform(scrollY, [850, 1080], [18, 0]);
@@ -120,10 +120,10 @@ export default function Page() {
               left: "-35%",
               right: "-35%",
               top: "50%",
-              height: "48vh",
+              height: "28vh",
               translateY: "-50%",
               background: "linear-gradient(180deg, transparent 0%, rgba(255,255,255,1) 44%, rgba(255,255,255,0.45) 58%, transparent 100%)",
-              filter: "blur(18px)",
+              filter: "blur(12px)",
               mixBlendMode: "screen",
             }}
           />
