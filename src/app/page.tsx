@@ -72,7 +72,7 @@ export default function Page() {
         <img src="/basement-logo.png" alt="The Basement logo" draggable={false} className="hero-layer hero-layer-desktop" style={{ zIndex: 3 }} />
         <img src="/basement-logo-mobile.png?v=2" alt="The Basement logo" draggable={false} className="hero-layer hero-layer-mobile" style={{ zIndex: 3 }} />
 
-        <motion.div className="logo-mask-layer" style={{ zIndex: 4, opacity: mouseShineOpacity }}>
+        <motion.div className="logo-mask-layer mouse-shine-layer" style={{ zIndex: 4, opacity: mouseShineOpacity }}>
           <motion.div
             style={{
               y: mouseShineY,
@@ -90,7 +90,7 @@ export default function Page() {
           />
         </motion.div>
 
-        <motion.div className="logo-mask-layer" style={{ zIndex: 5, opacity: scrollShineOpacity }}>
+        <motion.div className="logo-mask-layer scroll-shine-layer" style={{ zIndex: 5, opacity: scrollShineOpacity }}>
           <motion.div
             style={{
               y: scrollShineY,
@@ -149,6 +149,15 @@ function SiteStyles() {
   return (
     <style>{`
       html { scroll-behavior: smooth; }
+      html, body {
+        margin: 0;
+        padding: 0;
+        background: #f4f4f4;
+        overflow-x: hidden;
+      }
+      * {
+        box-sizing: border-box;
+      }
       .hero-section {
         position: relative;
         width: 100vw;
@@ -187,22 +196,28 @@ function SiteStyles() {
       @media (max-width: 900px) {
         .desktop-header { display: none !important; }
         .hero-section {
-          height: max(100vh, calc((100vw + 48px) * 1.5 - 80px));
+          height: max(100vh, calc((100vw + 72px) * 1.5 - 96px));
         }
         .hero-layer {
-          top: -80px;
-          left: -24px;
-          width: calc(100vw + 48px);
+          top: -96px;
+          left: -36px;
+          width: calc(100vw + 72px);
         }
         .hero-layer-desktop { display: none !important; }
         .hero-layer-mobile { display: block; }
         .logo-mask-layer {
-          top: -80px;
-          left: -24px;
-          width: calc(100vw + 48px);
-          height: calc((100vw + 48px) * 1.5);
+          top: -96px;
+          left: -36px;
+          width: calc(100vw + 72px);
+          height: calc((100vw + 72px) * 1.5);
           -webkit-mask-image: url('/basement-logo-mobile.png?v=2');
           mask-image: url('/basement-logo-mobile.png?v=2');
+        }
+        .mouse-shine-layer {
+          display: none !important;
+        }
+        .scroll-shine-layer {
+          display: block !important;
         }
         .site-section {
           padding: 88px 18px !important;
@@ -283,9 +298,9 @@ function ServicesSection({ onExpandImage }: { onExpandImage: (image: { src: stri
       <div className="mobile-scroll-grid" style={cardGridStyle}>
         <ServiceCard title="Haircut" price="$40" description="A complete haircut appointment for any style. Beard cleanup is included when requested during the same appointment." />
         <ServiceCard title="Shampoo" price="$8" description="A hand shampoo and conditioning service to refresh the hair before or after the cut." />
-        <ServiceCard title="Designs" price="$12" description="Additional design work added to a haircut. Very simple details may be included depending on the request." />
-        <ServiceCard title="Beard" price="$30" description="A standalone beard service focused on shaping, cleanup, line work, and a clean finish." />
-        <ServiceCard title="Outline" price="$25" description="A maintenance service for the hairline, neckline, and edges without a full haircut." />
+        <ServiceCard title="Designs" price="$10" description="Additional design work added to a haircut. Very simple details may be included depending on the request." />
+        <ServiceCard title="Beard" price="$25" description="A standalone beard service focused on shaping, cleanup, line work, and a clean finish." />
+        <ServiceCard title="Outline" price="$20" description="A maintenance service for the hairline, neckline, and edges without a full haircut." />
       </div>
 
       <div style={servicesPhotoNoteGridStyle} className="section-grid-two">
