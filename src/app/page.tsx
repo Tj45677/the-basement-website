@@ -283,9 +283,9 @@ function ServicesSection({ onExpandImage }: { onExpandImage: (image: { src: stri
       <div className="mobile-scroll-grid" style={cardGridStyle}>
         <ServiceCard title="Haircut" price="$40" description="A complete haircut appointment for any style. Beard cleanup is included when requested during the same appointment." />
         <ServiceCard title="Shampoo" price="$8" description="A hand shampoo and conditioning service to refresh the hair before or after the cut." />
-        <ServiceCard title="Designs" price="$10" description="Additional design work added to a haircut. Very simple details may be included depending on the request." />
-        <ServiceCard title="Beard" price="$25" description="A standalone beard service focused on shaping, cleanup, line work, and a clean finish." />
-        <ServiceCard title="Outline" price="$20" description="A maintenance service for the hairline, neckline, and edges without a full haircut." />
+        <ServiceCard title="Designs" price="$12" description="Additional design work added to a haircut. Very simple details may be included depending on the request." />
+        <ServiceCard title="Beard" price="$30" description="A standalone beard service focused on shaping, cleanup, line work, and a clean finish." />
+        <ServiceCard title="Outline" price="$25" description="A maintenance service for the hairline, neckline, and edges without a full haircut." />
       </div>
 
       <div style={servicesPhotoNoteGridStyle} className="section-grid-two">
