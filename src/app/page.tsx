@@ -434,7 +434,7 @@ function AboutSection() {
       <div style={aboutGridStyle} className="section-grid-two">
         <div style={aboutBodyStyle}>
           <p style={{ margin: "0 0 26px" }}>
-            My mission as a barber is to help you find the version of yourself that feels the most natural, sharp, and confident. That means working together to figure out what style suits you best, what products help you maintain it, and what kind of routine makes sense for your hair, whether that is every two weeks, every month, or every two months.
+            My mission as a barber, built through nearly nine years of experience, is to help you find the version of yourself that feels the most natural, sharp, and confident. That means working together to figure out what style suits you best, what products help you maintain it, and what kind of routine makes sense for your hair, whether that is every two weeks, every month, or every two months.
           </p>
           <p style={{ margin: "0 0 26px" }}>
             Making people happy has been the point from the day I started. Bringing the shop home means time is no longer the same restriction it used to be. It becomes a convenience. If you need to be in and out in thirty minutes, we can do that. If you want to sit down, talk through your hair, and figure out a plan properly, we can do that too.
