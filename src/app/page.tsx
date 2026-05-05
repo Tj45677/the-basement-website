@@ -361,7 +361,7 @@ function BookingSection() {
         </div>
 
         <form
-          action="https://formspree.io/f/YOUR_FORM_ID"
+          action="https://formspree.io/f/mrejqrze"
           method="POST"
           style={bookingFormStyle}
         >
@@ -420,7 +420,7 @@ function BookingSection() {
           </button>
 
           <p style={{ margin: "18px 0 0", lineHeight: 1.55, color: "#777", fontSize: "13px" }}>
-            Replace the Formspree URL in the code with your own endpoint before publishing.
+            Submitting an appointment request does not confirm a booking. I’ll follow up directly to review availability and finalize your appointment.
           </p>
         </form>
       </div>
