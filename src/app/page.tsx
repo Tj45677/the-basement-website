@@ -23,6 +23,9 @@ export default function Page() {
   const scrollShineY = useTransform(scrollY, [0, 650], ["-135vh", "135vh"]);
   const scrollShineOpacity = useTransform(scrollY, [0, 60, 360, 650, 900], [0, 0.85, 0.7, 0.25, 0]);
 
+  const mobileScrollShineY = useTransform(scrollY, [0, 420], ["-70vh", "70vh"]);
+  const mobileScrollShineOpacity = useTransform(scrollY, [0, 25, 240, 420, 620], [0, 1, 0.9, 0.35, 0]);
+
   const headerOpacity = useTransform(scrollY, [850, 1080], [0, 1]);
   const headerY = useTransform(scrollY, [850, 1080], [18, 0]);
   const scrollIndicatorOpacity = useTransform(scrollY, [0, 260], [1, 0]);
@@ -90,7 +93,7 @@ export default function Page() {
           />
         </motion.div>
 
-        <motion.div className="logo-mask-layer scroll-shine-layer" style={{ zIndex: 5, opacity: scrollShineOpacity }}>
+        <motion.div className="logo-mask-layer scroll-shine-layer scroll-shine-layer-desktop" style={{ zIndex: 5, opacity: scrollShineOpacity }}>
           <motion.div
             style={{
               y: scrollShineY,
@@ -103,6 +106,24 @@ export default function Page() {
               translateY: "-50%",
               background: "linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.95) 45%, rgba(255,255,255,0.25) 60%, transparent 100%)",
               filter: "blur(16px)",
+              mixBlendMode: "screen",
+            }}
+          />
+        </motion.div>
+
+        <motion.div className="logo-mask-layer scroll-shine-layer-mobile" style={{ zIndex: 6, opacity: mobileScrollShineOpacity }}>
+          <motion.div
+            style={{
+              y: mobileScrollShineY,
+              rotate: 14,
+              position: "absolute",
+              left: "-35%",
+              right: "-35%",
+              top: "50%",
+              height: "48vh",
+              translateY: "-50%",
+              background: "linear-gradient(180deg, transparent 0%, rgba(255,255,255,1) 44%, rgba(255,255,255,0.45) 58%, transparent 100%)",
+              filter: "blur(18px)",
               mixBlendMode: "screen",
             }}
           />
@@ -192,6 +213,7 @@ function SiteStyles() {
         mask-repeat: no-repeat;
       }
       .mobile-menu-button, .mobile-drawer, .mobile-menu-backdrop { display: none; }
+      .scroll-shine-layer-mobile { display: none; }
 
       @media (max-width: 900px) {
         .desktop-header { display: none !important; }
@@ -216,7 +238,10 @@ function SiteStyles() {
         .mouse-shine-layer {
           display: none !important;
         }
-        .scroll-shine-layer {
+        .scroll-shine-layer-desktop {
+          display: none !important;
+        }
+        .scroll-shine-layer-mobile {
           display: block !important;
         }
         .site-section {
