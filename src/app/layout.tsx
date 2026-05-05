@@ -4,7 +4,12 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "The Basement",
   icons: {
-    icon: "/icon.png",
+    icon: [
+      {
+        url: "/icon.png",
+        type: "image/png",
+      },
+    ],
   },
 };
 

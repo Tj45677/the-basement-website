@@ -207,6 +207,25 @@ function SiteStyles() {
         .site-section {
           padding: 88px 18px !important;
         }
+        .mobile-scroll-grid {
+          display: flex !important;
+          overflow-x: auto;
+          overflow-y: hidden;
+          gap: 16px !important;
+          margin-left: -18px;
+          margin-right: -18px;
+          padding: 0 18px 18px;
+          scroll-snap-type: x mandatory;
+          -webkit-overflow-scrolling: touch;
+          scrollbar-width: none;
+        }
+        .mobile-scroll-grid::-webkit-scrollbar {
+          display: none;
+        }
+        .mobile-scroll-grid > * {
+          flex: 0 0 82vw;
+          scroll-snap-align: start;
+        }
         .section-grid-two {
           grid-template-columns: 1fr !important;
         }
@@ -239,7 +258,7 @@ function SectionShell({ id, eyebrow, title, children }: { id: string; eyebrow: s
 function TestimonialsSection({ onExpandImage }: { onExpandImage: (image: { src: string; alt: string }) => void }) {
   return (
     <SectionShell id="testimonials" eyebrow="Testimonials" title="The cut should feel personal before it ever feels routine.">
-      <div style={cardGridStyle}>
+      <div className="mobile-scroll-grid" style={cardGridStyle}>
         <TestimonialCard source="Booksy" sourceUrl={BOOKSY_REVIEWS_URL} name="Alvin" date="Mar 8, 2026" service="Haircut" quote="TJ remembered me from 2 and a half months ago. Did me a solid. Great guy, great cut." />
         <TestimonialCard source="Booksy" sourceUrl={BOOKSY_REVIEWS_URL} name="Guillaume" date="Mar 1, 2026" service="Haircut" quote="Bon service" />
         <TestimonialCard source="Booksy" sourceUrl={BOOKSY_REVIEWS_URL} name="Danielo" date="Feb 22, 2026" service="Haircut and Beard Trim" quote="TJ did a great job!" />
@@ -261,7 +280,7 @@ function TestimonialsSection({ onExpandImage }: { onExpandImage: (image: { src: 
 function ServicesSection({ onExpandImage }: { onExpandImage: (image: { src: string; alt: string }) => void }) {
   return (
     <SectionShell id="services" eyebrow="Services" title="Services designed around a complete appointment.">
-      <div style={cardGridStyle}>
+      <div className="mobile-scroll-grid" style={cardGridStyle}>
         <ServiceCard title="Haircut" price="$40" description="A complete haircut appointment for any style. Beard cleanup is included when requested during the same appointment." />
         <ServiceCard title="Shampoo" price="$8" description="A hand shampoo and conditioning service to refresh the hair before or after the cut." />
         <ServiceCard title="Designs" price="$10" description="Additional design work added to a haircut. Very simple details may be included depending on the request." />
