@@ -136,6 +136,7 @@ export default function Page() {
       <ServicesSection onExpandImage={setExpandedImage} />
       <BookingSection />
       <AboutSection />
+      <Footer />
 
       {expandedImage && (
         <ImageLightbox src={expandedImage.src} alt={expandedImage.alt} onClose={() => setExpandedImage(null)} />
@@ -301,7 +302,7 @@ function BookingSection() {
         </div>
 
         <form
-          action="https://formspree.io/f/mrejqrze"
+          action="https://formspree.io/f/YOUR_FORM_ID"
           method="POST"
           style={bookingFormStyle}
         >
@@ -360,7 +361,7 @@ function BookingSection() {
           </button>
 
           <p style={{ margin: "18px 0 0", lineHeight: 1.55, color: "#777", fontSize: "13px" }}>
-            Submitting a request does not confirm an appointment. I’ll follow up directly to review availability and finalize your booking.
+            Replace the Formspree URL in the code with your own endpoint before publishing.
           </p>
         </form>
       </div>
@@ -553,6 +554,26 @@ function TestimonialCard({ source, sourceUrl, name, date, service, quote }: { so
 
       <p style={viewOriginalStyle}>View original</p>
     </a>
+  );
+}
+
+function Footer() {
+  return (
+    <footer style={footerStyle}>
+      <a
+        href="https://www.instagram.com/thebasement_barbershop_/?hl=en"
+        target="_blank"
+        rel="noopener noreferrer"
+        style={footerLinkStyle}
+      >
+        Instagram
+      </a>
+
+      <div style={footerRightStyle}>
+        <span>© {new Date().getFullYear()} The Basement</span>
+        <span>Private barbering in Stittsville</span>
+      </div>
+    </footer>
   );
 }
 
@@ -783,6 +804,38 @@ const viewOriginalStyle = { margin: "34px 0 0", fontSize: "11px", letterSpacing:
 const lightboxStyle = { position: "fixed" as const, inset: 0, zIndex: 100, background: "rgba(20,20,20,0.72)", backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)", display: "flex", alignItems: "center", justifyContent: "center", padding: "24px", cursor: "zoom-out" };
 const lightboxImageStyle = { maxWidth: "min(1100px, 94vw)", maxHeight: "88vh", objectFit: "contain" as const, borderRadius: "28px", boxShadow: "0 30px 100px rgba(0,0,0,0.38)", cursor: "default", userSelect: "none" as const };
 const lightboxCloseStyle = { position: "fixed" as const, right: "24px", top: "24px", width: "44px", height: "44px", borderRadius: "999px", border: "none", background: "rgba(244,244,244,0.72)", color: "#181818", fontSize: "24px", lineHeight: 1, cursor: "pointer" };
+
+const footerStyle = {
+  minHeight: "92px",
+  background: "rgba(232,232,232,0.72)",
+  backdropFilter: "blur(18px)",
+  WebkitBackdropFilter: "blur(18px)",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+  padding: "0 36px",
+  boxSizing: "border-box" as const,
+  color: "#3f3f3f",
+};
+
+const footerLinkStyle = {
+  color: "#3f3f3f",
+  textDecoration: "none",
+  fontSize: "14px",
+  letterSpacing: "0.22em",
+  textTransform: "uppercase" as const,
+  fontWeight: 500,
+};
+
+const footerRightStyle = {
+  display: "flex",
+  alignItems: "center",
+  gap: "24px",
+  color: "#686868",
+  fontSize: "12px",
+  letterSpacing: "0.16em",
+  textTransform: "uppercase" as const,
+};
 
 const desktopHeaderStyle = { position: "fixed" as const, top: 0, left: 0, right: 0, width: "100vw", zIndex: 20, height: "92px", background: "rgba(232,232,232,0.72)", backdropFilter: "blur(18px)", WebkitBackdropFilter: "blur(18px)", borderTop: "none", borderBottom: "none", display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 36px", boxSizing: "border-box" as const };
 const headerLogoStyle = { height: "134px", width: "auto", display: "block", userSelect: "none" as const };
