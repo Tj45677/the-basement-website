@@ -1,36 +1,34 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# The Basement Website
 
-## Getting Started
+A custom website for **The Basement**, a private home barbershop in Stittsville.
 
-First, run the development server:
+The site is built to feel less like a standard barbershop template and more like a personal, visual introduction to the shop. It includes a custom animated hero section, testimonials, services, booking information, and an about section explaining the mission behind The Basement.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Custom desktop and mobile hero visuals
+- Mouse-reactive shadow movement
+- Logo shine effects
+- Mobile-specific slide-out menu
+- Smooth section navigation
+- Testimonials with original source links
+- Expandable haircut and station photos
+- Services and pricing section
+- Booking section with direct contact options
+- Formspree-ready appointment request form
+- Responsive layout for desktop and mobile
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Tech Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Next.js
+- React
+- TypeScript
+- Framer Motion
+- Vercel
 
-## Learn More
+## Project Structure
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```text
+src/app/page.tsx      Main website page
+src/app/layout.tsx    Site metadata and layout
+public/               Images, logos, icons, and visual assets
