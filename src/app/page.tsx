@@ -59,7 +59,7 @@ export default function Page() {
           style={{ zIndex: 1, x: shadowX, y: shadowY }}
         />
         <motion.img
-          src="/hero-shadow-mobile.png"
+          src="/hero-shadow-mobile.png?v=2"
           alt=""
           draggable={false}
           className="hero-layer hero-layer-mobile"
@@ -67,10 +67,10 @@ export default function Page() {
         />
 
         <img src="/hero-cutout.png" alt="" draggable={false} className="hero-layer hero-layer-desktop" style={{ zIndex: 2 }} />
-        <img src="/hero-cutout-mobile.png" alt="" draggable={false} className="hero-layer hero-layer-mobile" style={{ zIndex: 2 }} />
+        <img src="/hero-cutout-mobile.png?v=2" alt="" draggable={false} className="hero-layer hero-layer-mobile" style={{ zIndex: 2 }} />
 
         <img src="/basement-logo.png" alt="The Basement logo" draggable={false} className="hero-layer hero-layer-desktop" style={{ zIndex: 3 }} />
-        <img src="/basement-logo-mobile.png" alt="The Basement logo" draggable={false} className="hero-layer hero-layer-mobile" style={{ zIndex: 3 }} />
+        <img src="/basement-logo-mobile.png?v=2" alt="The Basement logo" draggable={false} className="hero-layer hero-layer-mobile" style={{ zIndex: 3 }} />
 
         <motion.div className="logo-mask-layer" style={{ zIndex: 4, opacity: mouseShineOpacity }}>
           <motion.div
@@ -184,7 +184,7 @@ function SiteStyles() {
       }
       .mobile-menu-button, .mobile-drawer, .mobile-menu-backdrop { display: none; }
 
-      @media (max-width: 767px) {
+      @media (max-width: 900px) {
         .desktop-header { display: none !important; }
         .hero-section {
           height: max(100vh, calc((100vw + 48px) * 1.5 - 80px));
@@ -201,8 +201,8 @@ function SiteStyles() {
           left: -24px;
           width: calc(100vw + 48px);
           height: calc((100vw + 48px) * 1.5);
-          -webkit-mask-image: url('/basement-logo-mobile.png');
-          mask-image: url('/basement-logo-mobile.png');
+          -webkit-mask-image: url('/basement-logo-mobile.png?v=2');
+          mask-image: url('/basement-logo-mobile.png?v=2');
         }
         .site-section {
           padding: 88px 18px !important;
