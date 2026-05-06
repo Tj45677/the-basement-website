@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, useMotionValue, useScroll, useTransform } from "framer-motion";
+import { motion, useMotionTemplate, useMotionValue, useScroll, useTransform } from "framer-motion";
 import type { MouseEvent, ReactNode } from "react";
 
 const GOOGLE_REVIEWS_URL = "https://www.google.com/search?q=spark+barbershop&ie=UTF-8#lrd=0x4cce05724d8196ff:0x7c77babcaa062849,1,,,,";
@@ -29,6 +29,10 @@ export default function Page() {
   const headerOpacity = useTransform(scrollY, [850, 1080], [0, 1]);
   const headerY = useTransform(scrollY, [850, 1080], [18, 0]);
   const scrollIndicatorOpacity = useTransform(scrollY, [0, 260], [1, 0]);
+
+  const mouseRevealMaskPosition = useMotionTemplate`50% calc(50% + ${mouseShineY})`;
+  const scrollRevealMaskPosition = useMotionTemplate`50% calc(50% + ${scrollShineY})`;
+  const mobileRevealMaskPosition = useMotionTemplate`50% calc(50% + ${mobileScrollShineY})`;
 
   function handleMouseMove(event: MouseEvent<HTMLElement>) {
     mouseX.set(event.clientX / window.innerWidth - 0.5);
@@ -77,6 +81,15 @@ export default function Page() {
 
         <motion.div className="logo-mask-layer mouse-shine-layer" style={{ zIndex: 4, opacity: mouseShineOpacity }}>
           <motion.div
+            className="shine-logo-reveal"
+            style={{
+              backgroundImage: "url('/basement-logo-shine.png')",
+              WebkitMaskPosition: mouseRevealMaskPosition,
+              maskPosition: mouseRevealMaskPosition,
+            }}
+          />
+
+          <motion.div
             style={{
               y: mouseShineY,
               rotate: 15,
@@ -95,6 +108,15 @@ export default function Page() {
 
         <motion.div className="logo-mask-layer scroll-shine-layer scroll-shine-layer-desktop" style={{ zIndex: 5, opacity: scrollShineOpacity }}>
           <motion.div
+            className="shine-logo-reveal"
+            style={{
+              backgroundImage: "url('/basement-logo-shine.png')",
+              WebkitMaskPosition: scrollRevealMaskPosition,
+              maskPosition: scrollRevealMaskPosition,
+            }}
+          />
+
+          <motion.div
             style={{
               y: scrollShineY,
               rotate: -12,
@@ -112,6 +134,15 @@ export default function Page() {
         </motion.div>
 
         <motion.div className="logo-mask-layer scroll-shine-layer-mobile" style={{ zIndex: 6, opacity: mobileScrollShineOpacity }}>
+          <motion.div
+            className="shine-logo-reveal"
+            style={{
+              backgroundImage: "url('/basement-logo-mobile-shine.png?v=2')",
+              WebkitMaskPosition: mobileRevealMaskPosition,
+              maskPosition: mobileRevealMaskPosition,
+            }}
+          />
+
           <motion.div
             style={{
               y: mobileScrollShineY,
@@ -214,6 +245,20 @@ function SiteStyles() {
       }
       .mobile-menu-button, .mobile-drawer, .mobile-menu-backdrop { display: none; }
       .scroll-shine-layer-mobile { display: none; }
+      .shine-logo-reveal {
+        position: absolute;
+        inset: 0;
+        background-size: 100% auto;
+        background-position: top center;
+        background-repeat: no-repeat;
+        pointer-events: none;
+        -webkit-mask-image: linear-gradient(180deg, transparent 0%, black 42%, black 58%, transparent 100%);
+        mask-image: linear-gradient(180deg, transparent 0%, black 42%, black 58%, transparent 100%);
+        -webkit-mask-size: 100% 24vh;
+        mask-size: 100% 24vh;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+      }
 
       @media (max-width: 900px) {
         .desktop-header { display: none !important; }
@@ -243,6 +288,10 @@ function SiteStyles() {
         }
         .scroll-shine-layer-mobile {
           display: block !important;
+        }
+        .shine-logo-reveal {
+          -webkit-mask-size: 100% 22vh;
+          mask-size: 100% 22vh;
         }
         .site-section {
           padding: 88px 18px !important;
@@ -324,8 +373,8 @@ function ServicesSection({ onExpandImage }: { onExpandImage: (image: { src: stri
         <ServiceCard title="Haircut" price="$40" description="A complete haircut appointment for any style. Beard cleanup is included when requested during the same appointment." />
         <ServiceCard title="Shampoo" price="$8" description="A hand shampoo and conditioning service to refresh the hair before or after the cut." />
         <ServiceCard title="Designs" price="$10" description="Additional design work added to a haircut. Very simple details may be included depending on the request." />
-        <ServiceCard title="Beard" price="$30" description="A standalone beard service focused on shaping, cleanup, line work, and a clean finish." />
-        <ServiceCard title="Outline" price="$25" description="A maintenance service for the hairline, neckline, and edges without a full haircut." />
+        <ServiceCard title="Beard" price="$25" description="A standalone beard service focused on shaping, cleanup, line work, and a clean finish." />
+        <ServiceCard title="Outline" price="$20" description="A maintenance service for the hairline, neckline, and edges without a full haircut." />
       </div>
 
       <div style={servicesPhotoNoteGridStyle} className="section-grid-two">
@@ -361,7 +410,7 @@ function BookingSection() {
         </div>
 
         <form
-          action="https://formspree.io/f/mrejqrze"
+          action="https://formspree.io/f/YOUR_FORM_ID"
           method="POST"
           style={bookingFormStyle}
         >
@@ -420,7 +469,7 @@ function BookingSection() {
           </button>
 
           <p style={{ margin: "18px 0 0", lineHeight: 1.55, color: "#777", fontSize: "13px" }}>
-            Submitting an appointment request does not confirm a booking. I’ll follow up directly to review availability and finalize your appointment.
+            Replace the Formspree URL in the code with your own endpoint before publishing.
           </p>
         </form>
       </div>
@@ -434,7 +483,7 @@ function AboutSection() {
       <div style={aboutGridStyle} className="section-grid-two">
         <div style={aboutBodyStyle}>
           <p style={{ margin: "0 0 26px" }}>
-            My mission as a barber, built through nearly nine years of experience, is to help you find the version of yourself that feels the most natural, sharp, and confident. That means working together to figure out what style suits you best, what products help you maintain it, and what kind of routine makes sense for your hair, whether that is every two weeks, every month, or every two months.
+            My mission as a barber is to help you find the version of yourself that feels the most natural, sharp, and confident. That means working together to figure out what style suits you best, what products help you maintain it, and what kind of routine makes sense for your hair, whether that is every two weeks, every month, or every two months.
           </p>
           <p style={{ margin: "0 0 26px" }}>
             Making people happy has been the point from the day I started. Bringing the shop home means time is no longer the same restriction it used to be. It becomes a convenience. If you need to be in and out in thirty minutes, we can do that. If you want to sit down, talk through your hair, and figure out a plan properly, we can do that too.
