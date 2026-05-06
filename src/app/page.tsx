@@ -373,8 +373,8 @@ function ServicesSection({ onExpandImage }: { onExpandImage: (image: { src: stri
         <ServiceCard title="Haircut" price="$40" description="A complete haircut appointment for any style. Beard cleanup is included when requested during the same appointment." />
         <ServiceCard title="Shampoo" price="$8" description="A hand shampoo and conditioning service to refresh the hair before or after the cut." />
         <ServiceCard title="Designs" price="$10" description="Additional design work added to a haircut. Very simple details may be included depending on the request." />
-        <ServiceCard title="Beard" price="$25" description="A standalone beard service focused on shaping, cleanup, line work, and a clean finish." />
-        <ServiceCard title="Outline" price="$20" description="A maintenance service for the hairline, neckline, and edges without a full haircut." />
+        <ServiceCard title="Beard" price="$30" description="A standalone beard service focused on shaping, cleanup, line work, and a clean finish." />
+        <ServiceCard title="Outline" price="$25" description="A maintenance service for the hairline, neckline, and edges without a full haircut." />
       </div>
 
       <div style={servicesPhotoNoteGridStyle} className="section-grid-two">
@@ -410,7 +410,7 @@ function BookingSection() {
         </div>
 
         <form
-          action="https://formspree.io/f/YOUR_FORM_ID"
+          action="https://formspree.io/f/mrejqrze"
           method="POST"
           style={bookingFormStyle}
         >
@@ -469,7 +469,7 @@ function BookingSection() {
           </button>
 
           <p style={{ margin: "18px 0 0", lineHeight: 1.55, color: "#777", fontSize: "13px" }}>
-            Replace the Formspree URL in the code with your own endpoint before publishing.
+            Submitting an appointment request does not confirm a booking. I’ll follow up directly to review availability and finalize your appointment.
           </p>
         </form>
       </div>
