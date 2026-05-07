@@ -355,8 +355,9 @@ function TestimonialsSection({ onExpandImage }: { onExpandImage: (image: { src: 
         <TestimonialCard source="Google" sourceUrl={GOOGLE_REVIEWS_URL} name="Michael Grenier" date="Feb 2026" quote="Ossein and TJ are very attentive to details, offer a stand out customer service, always making sure their clients are fully satisfied! They offer a wide variety of services and are very talented. Come and check them out for yourselves, highly recommended!" />
         <TestimonialCard source="Google" sourceUrl={GOOGLE_REVIEWS_URL} name="Vytautas Budnikas" date="Apr 2026" quote="Great place, barber TJ is an awesome guy. Really liked the cut they gave me. Definitely worth your while." />
         <TestimonialCard source="Google" sourceUrl={GOOGLE_REVIEWS_URL} name="Danielo JB" date="Mar 2026" quote="T.J nailed it!" />
-        <PhotoTile src="/cut-1.jpg" alt="Haircut by The Basement" label="Basement cut" onExpand={onExpandImage} />
+        <PhotoTile src="/cut-3.jpg" alt="Haircut by The Basement" label="Basement cut" onExpand={onExpandImage} />
         <PhotoTile src="/cut-2.jpg" alt="Haircut by The Basement" label="Basement cut" onExpand={onExpandImage} />
+        <PhotoTile src="/cut-1.jpg" alt="Haircut by The Basement" label="Basement cut" onExpand={onExpandImage} />
       </div>
 
       <p style={noteStyle}>
