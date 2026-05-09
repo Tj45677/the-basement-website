@@ -358,6 +358,8 @@ function TestimonialsSection({ onExpandImage }: { onExpandImage: (image: { src: 
         <PhotoTile src="/cut-3.jpg" alt="Haircut by The Basement" label="Basement cut" onExpand={onExpandImage} />
         <PhotoTile src="/cut-2.jpg" alt="Haircut by The Basement" label="Basement cut" onExpand={onExpandImage} />
         <PhotoTile src="/cut-1.jpg" alt="Haircut by The Basement" label="Basement cut" onExpand={onExpandImage} />
+        <PhotoTile src="/cut-4.jpg" alt="Haircut by The Basement" label="Basement cut" onExpand={onExpandImage} />
+        <PhotoTile src="/cut-5.jpg" alt="Haircut by The Basement" label="Basement cut" onExpand={onExpandImage} />
       </div>
 
       <p style={noteStyle}>
