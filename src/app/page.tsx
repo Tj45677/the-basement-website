@@ -7,12 +7,28 @@ import type { MouseEvent, ReactNode } from "react";
 const GOOGLE_REVIEWS_URL = "https://www.google.com/search?q=spark+barbershop&ie=UTF-8#lrd=0x4cce05724d8196ff:0x7c77babcaa062849,1,,,,";
 const BOOKSY_REVIEWS_URL = "https://booksy.com/en-ca/17486_spark-barbershop_barbershop_1025953_gatineau#reviews-section";
 
+const MORE_GALLERY_ITEMS: Array<
+  | { type: "image"; src: string; alt: string; label: string }
+  | { type: "testimonial"; source: string; sourceUrl: string; name: string; date: string; service?: string; quote: string }
+> = [
+  { type: "image", src: "/cut-6.jpg", alt: "Haircut by The Basement", label: "Basement cut" },
+  { type: "testimonial", source: "Instagram", sourceUrl: BOOKSY_REVIEWS_URL, name: "Mohamed Y.", date: "May 2026", quote: "Bro it looks so good mashallah, like i was worried cuz normally other barbers wet my hair then the second it dries it frizzes up but no this held and it looks good with my glasses. I HATED these frames with a passion too bro 😭 Thanks again brother" },
+  //{ type: "image", src: "/cut-7.jpg", alt: "Haircut by The Basement", label: "Basement cut" },
+
+  // Add extra gallery items here without changing the main testimonials grid.
+  // Example image:
+  // { type: "image", src: "/cut-6.jpg", alt: "Haircut by The Basement", label: "Basement cut" },
+  // Example testimonial:
+  // { type: "testimonial", source: "Google", sourceUrl: GOOGLE_REVIEWS_URL, name: "Client name", date: "May 2026", quote: "Review text" },
+];
+
 export default function Page() {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
   const { scrollY } = useScroll();
   const [expandedImage, setExpandedImage] = useState<null | { src: string; alt: string }>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [moreGalleryOpen, setMoreGalleryOpen] = useState(false);
 
   const shadowX = useTransform(mouseX, [-0.5, 0.5], [-14, 14]);
   const shadowY = useTransform(mouseY, [-0.5, 0.5], [-10, 10]);
@@ -184,11 +200,18 @@ export default function Page() {
       <MobileMenuButton open={mobileMenuOpen} setOpen={setMobileMenuOpen} />
       <MobileDrawer open={mobileMenuOpen} setOpen={setMobileMenuOpen} />
 
-      <TestimonialsSection onExpandImage={setExpandedImage} />
+      <TestimonialsSection onExpandImage={setExpandedImage} onOpenMore={() => setMoreGalleryOpen(true)} />
       <ServicesSection onExpandImage={setExpandedImage} />
       <BookingSection />
       <AboutSection />
       <Footer />
+
+      {moreGalleryOpen && (
+        <MoreGalleryModal
+          onClose={() => setMoreGalleryOpen(false)}
+          onExpandImage={setExpandedImage}
+        />
+      )}
 
       {expandedImage && (
         <ImageLightbox src={expandedImage.src} alt={expandedImage.alt} onClose={() => setExpandedImage(null)} />
@@ -344,7 +367,13 @@ function SectionShell({ id, eyebrow, title, children }: { id: string; eyebrow: s
   );
 }
 
-function TestimonialsSection({ onExpandImage }: { onExpandImage: (image: { src: string; alt: string }) => void }) {
+function TestimonialsSection({
+  onExpandImage,
+  onOpenMore,
+}: {
+  onExpandImage: (image: { src: string; alt: string }) => void;
+  onOpenMore: () => void;
+}) {
   return (
     <SectionShell id="testimonials" eyebrow="Testimonials" title="The cut should feel personal before it ever feels routine.">
       <div className="mobile-scroll-grid" style={cardGridStyle}>
@@ -361,6 +390,24 @@ function TestimonialsSection({ onExpandImage }: { onExpandImage: (image: { src: 
         <PhotoTile src="/cut-4.jpg" alt="Haircut by The Basement" label="Basement cut" onExpand={onExpandImage} />
         <PhotoTile src="/cut-5.jpg" alt="Haircut by The Basement" label="Basement cut" onExpand={onExpandImage} />
       </div>
+
+      <button
+        type="button"
+        onClick={onOpenMore}
+        style={viewMoreButtonStyle}
+        onMouseEnter={(event) => {
+          event.currentTarget.style.transform = "translateY(-4px)";
+          event.currentTarget.style.boxShadow = "0 24px 70px rgba(0,0,0,0.075)";
+          event.currentTarget.style.background = "rgba(255,255,255,0.68)";
+        }}
+        onMouseLeave={(event) => {
+          event.currentTarget.style.transform = "translateY(0)";
+          event.currentTarget.style.boxShadow = "0 18px 50px rgba(0,0,0,0.045)";
+          event.currentTarget.style.background = "rgba(255,255,255,0.52)";
+        }}
+      >
+        View more
+      </button>
 
       <p style={noteStyle}>
         These testimonials come from TJ’s time at Spark Barbershop before The Basement opened. Click any review to see it at its original source.
@@ -607,12 +654,129 @@ function PhotoTile({ src, alt, label, onExpand }: { src: string; alt: string; la
 }
 
 function ImageLightbox({ src, alt, onClose }: { src: string; alt: string; onClose: () => void }) {
+  const [zoomed, setZoomed] = useState(false);
+
   return (
     <div onClick={onClose} style={lightboxStyle}>
-      <img src={src} alt={alt} draggable={false} onClick={(event) => event.stopPropagation()} style={lightboxImageStyle} />
+      <div
+        onClick={(event) => event.stopPropagation()}
+        style={{
+          ...lightboxImageWrapStyle,
+          overflow: zoomed ? "auto" : "hidden",
+          cursor: zoomed ? "grab" : "default",
+        }}
+      >
+        <img
+          src={src}
+          alt={alt}
+          draggable={false}
+          style={{
+            ...lightboxImageStyle,
+            maxWidth: zoomed ? "none" : "min(1100px, 94vw)",
+            maxHeight: zoomed ? "none" : "88vh",
+            width: zoomed ? "150vw" : "auto",
+          }}
+        />
+      </div>
+
+      <button
+        type="button"
+        onClick={(event) => {
+          event.stopPropagation();
+          setZoomed((current) => !current);
+        }}
+        aria-label={zoomed ? "Zoom out" : "Zoom in"}
+        style={lightboxZoomStyle}
+      >
+        ⌕
+      </button>
+
       <button type="button" onClick={onClose} aria-label="Close image preview" style={lightboxCloseStyle}>
         ×
       </button>
+    </div>
+  );
+}
+
+function ViewMoreButton({ onClick }: { onClick: () => void }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      style={viewMoreButtonStyle}
+      onMouseEnter={(event) => {
+        event.currentTarget.style.transform = "translateY(-4px)";
+        event.currentTarget.style.boxShadow = "0 24px 70px rgba(0,0,0,0.075)";
+        event.currentTarget.style.background = "rgba(255,255,255,0.68)";
+      }}
+      onMouseLeave={(event) => {
+        event.currentTarget.style.transform = "translateY(0)";
+        event.currentTarget.style.boxShadow = "0 18px 50px rgba(0,0,0,0.045)";
+        event.currentTarget.style.background = "rgba(255,255,255,0.52)";
+      }}
+    >
+      View more
+    </button>
+  );
+}
+
+function MoreGalleryModal({
+  onClose,
+  onExpandImage,
+}: {
+  onClose: () => void;
+  onExpandImage: (image: { src: string; alt: string }) => void;
+}) {
+  return (
+    <div style={moreGalleryOverlayStyle} onClick={onClose}>
+      <div style={moreGalleryPanelStyle} onClick={(event) => event.stopPropagation()}>
+        <div style={moreGalleryHeaderStyle}>
+          <div>
+            <p style={smallCapsStyle}>Gallery</p>
+            <h3 style={moreGalleryTitleStyle}>More cuts and testimonials</h3>
+          </div>
+
+          <button type="button" onClick={onClose} aria-label="Close gallery" style={galleryCloseButtonStyle}>
+            ×
+          </button>
+        </div>
+
+        {MORE_GALLERY_ITEMS.length > 0 ? (
+          <div style={moreGalleryGridStyle}>
+            {MORE_GALLERY_ITEMS.map((item, index) => {
+              if (item.type === "image") {
+                return (
+                  <PhotoTile
+                    key={`${item.src}-${index}`}
+                    src={item.src}
+                    alt={item.alt}
+                    label={item.label}
+                    onExpand={(image) => {
+                      onClose();
+                      onExpandImage(image);
+                    }}
+                  />
+                );
+              }
+
+              return (
+                <TestimonialCard
+                  key={`${item.name}-${index}`}
+                  source={item.source}
+                  sourceUrl={item.sourceUrl}
+                  name={item.name}
+                  date={item.date}
+                  service={item.service}
+                  quote={item.quote}
+                />
+              );
+            })}
+          </div>
+        ) : (
+          <p style={emptyGalleryStyle}>
+          </p>
+        )}
+      </div>
     </div>
   );
 }
@@ -913,8 +1077,57 @@ const quoteStyle = { margin: 0, fontSize: "clamp(18px, 1.8vw, 26px)", lineHeight
 const viewOriginalStyle = { margin: "34px 0 0", fontSize: "11px", letterSpacing: "0.24em", textTransform: "uppercase" as const, color: "#777" };
 
 const lightboxStyle = { position: "fixed" as const, inset: 0, zIndex: 100, background: "rgba(20,20,20,0.72)", backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)", display: "flex", alignItems: "center", justifyContent: "center", padding: "24px", cursor: "zoom-out" };
-const lightboxImageStyle = { maxWidth: "min(1100px, 94vw)", maxHeight: "88vh", objectFit: "contain" as const, borderRadius: "28px", boxShadow: "0 30px 100px rgba(0,0,0,0.38)", cursor: "default", userSelect: "none" as const };
-const lightboxCloseStyle = { position: "fixed" as const, right: "24px", top: "24px", width: "44px", height: "44px", borderRadius: "999px", border: "none", background: "rgba(244,244,244,0.72)", color: "#181818", fontSize: "24px", lineHeight: 1, cursor: "pointer" };
+const lightboxImageWrapStyle = { position: "relative" as const, maxWidth: "min(1100px, 94vw)", maxHeight: "88vh", borderRadius: "28px", boxShadow: "0 30px 100px rgba(0,0,0,0.38)", background: "rgba(244,244,244,0.08)" };
+const lightboxImageStyle = { maxWidth: "min(1100px, 94vw)", maxHeight: "88vh", objectFit: "contain" as const, borderRadius: "28px", cursor: "default", userSelect: "none" as const, display: "block" };
+const lightboxCloseStyle = { position: "fixed" as const, right: "24px", top: "24px", width: "44px", height: "44px", borderRadius: "999px", border: "none", background: "rgba(244,244,244,0.72)", color: "#181818", fontSize: "24px", lineHeight: 1, cursor: "pointer", zIndex: 102 };
+const lightboxZoomStyle = { position: "fixed" as const, right: "78px", top: "24px", width: "44px", height: "44px", borderRadius: "999px", border: "none", background: "rgba(244,244,244,0.72)", color: "#181818", fontSize: "25px", lineHeight: 1, cursor: "pointer", zIndex: 102 };
+
+const viewMoreButtonStyle = {
+  width: "fit-content",
+  margin: "28px 0 0",
+  border: "none",
+  borderRadius: "999px",
+  background: "rgba(255,255,255,0.52)",
+  boxShadow: "0 18px 50px rgba(0,0,0,0.045)",
+  color: "#3f3f3f",
+  padding: "16px 22px",
+  fontSize: "13px",
+  letterSpacing: "0.22em",
+  textTransform: "uppercase" as const,
+  fontWeight: 600,
+  cursor: "pointer",
+  transform: "translateY(0)",
+  transition: "transform 160ms ease, box-shadow 160ms ease, background 160ms ease",
+};
+
+const moreGalleryOverlayStyle = {
+  position: "fixed" as const,
+  inset: 0,
+  zIndex: 95,
+  background: "rgba(20,20,20,0.62)",
+  backdropFilter: "blur(10px)",
+  WebkitBackdropFilter: "blur(10px)",
+  padding: "24px",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+};
+
+const moreGalleryPanelStyle = {
+  width: "min(1180px, 94vw)",
+  maxHeight: "88vh",
+  overflowY: "auto" as const,
+  borderRadius: "34px",
+  background: "rgba(244,244,244,0.88)",
+  boxShadow: "0 30px 100px rgba(0,0,0,0.32)",
+  padding: "clamp(24px, 4vw, 42px)",
+};
+
+const moreGalleryHeaderStyle = { display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: "24px", marginBottom: "30px" };
+const moreGalleryTitleStyle = { margin: "12px 0 0", fontSize: "clamp(36px, 5vw, 72px)", lineHeight: 0.95, letterSpacing: "-0.06em", color: "#181818" };
+const galleryCloseButtonStyle = { width: "44px", height: "44px", borderRadius: "999px", border: "none", background: "rgba(255,255,255,0.72)", color: "#181818", fontSize: "24px", lineHeight: 1, cursor: "pointer", flex: "0 0 auto" };
+const moreGalleryGridStyle = { display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gridAutoRows: "1fr", gap: "18px" };
+const emptyGalleryStyle = { margin: 0, fontSize: "16px", lineHeight: 1.7, color: "#686868" };
 
 const footerStyle = {
   minHeight: "92px",
