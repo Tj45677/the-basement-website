@@ -11,9 +11,9 @@ const MORE_GALLERY_ITEMS: Array<
   | { type: "image"; src: string; alt: string; label: string }
   | { type: "testimonial"; source: string; sourceUrl: string; name: string; date: string; service?: string; quote: string }
 > = [
-  { type: "image", src: "/cut-6.jpg", alt: "Haircut by The Basement", label: "Basement cut" },
+  { type: "image", src: "/cut-1.jpg", alt: "Haircut by The Basement", label: "Basement cut" },
   { type: "testimonial", source: "Instagram", sourceUrl: BOOKSY_REVIEWS_URL, name: "Mohamed Y.", date: "May 2026", quote: "Bro it looks so good mashallah, like i was worried cuz normally other barbers wet my hair then the second it dries it frizzes up but no this held and it looks good with my glasses. I HATED these frames with a passion too bro 😭 Thanks again brother" },
-  { type: "image", src: "/cut-7.jpg", alt: "Haircut by The Basement", label: "Basement cut" },
+  { type: "image", src: "/cut-2.jpg", alt: "Haircut by The Basement", label: "Basement cut" },
   //{ type: "image", src: "/cut-7.jpg", alt: "Haircut by The Basement", label: "Basement cut" },
 
   // Add extra gallery items here without changing the main testimonials grid.
@@ -386,8 +386,8 @@ function TestimonialsSection({
         <TestimonialCard source="Google" sourceUrl={GOOGLE_REVIEWS_URL} name="Vytautas Budnikas" date="Apr 2026" quote="Great place, barber TJ is an awesome guy. Really liked the cut they gave me. Definitely worth your while." />
         <TestimonialCard source="Google" sourceUrl={GOOGLE_REVIEWS_URL} name="Danielo JB" date="Mar 2026" quote="T.J nailed it!" />
         <PhotoTile src="/cut-3.jpg" alt="Haircut by The Basement" label="Basement cut" onExpand={onExpandImage} />
-        <PhotoTile src="/cut-2.jpg" alt="Haircut by The Basement" label="Basement cut" onExpand={onExpandImage} />
-        <PhotoTile src="/cut-1.jpg" alt="Haircut by The Basement" label="Basement cut" onExpand={onExpandImage} />
+        <PhotoTile src="/cut-7.jpg" alt="Haircut by The Basement" label="Basement cut" onExpand={onExpandImage} />
+        <PhotoTile src="/cut-6.jpg" alt="Haircut by The Basement" label="Basement cut" onExpand={onExpandImage} />
         <PhotoTile src="/cut-4.jpg" alt="Haircut by The Basement" label="Basement cut" onExpand={onExpandImage} />
         <PhotoTile src="/cut-5.jpg" alt="Haircut by The Basement" label="Basement cut" onExpand={onExpandImage} />
       </div>
