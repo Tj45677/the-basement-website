@@ -13,6 +13,7 @@ const MORE_GALLERY_ITEMS: Array<
 > = [
   { type: "image", src: "/cut-6.jpg", alt: "Haircut by The Basement", label: "Basement cut" },
   { type: "testimonial", source: "Instagram", sourceUrl: BOOKSY_REVIEWS_URL, name: "Mohamed Y.", date: "May 2026", quote: "Bro it looks so good mashallah, like i was worried cuz normally other barbers wet my hair then the second it dries it frizzes up but no this held and it looks good with my glasses. I HATED these frames with a passion too bro 😭 Thanks again brother" },
+  { type: "image", src: "/cut-7.jpg", alt: "Haircut by The Basement", label: "Basement cut" },
   //{ type: "image", src: "/cut-7.jpg", alt: "Haircut by The Basement", label: "Basement cut" },
 
   // Add extra gallery items here without changing the main testimonials grid.
