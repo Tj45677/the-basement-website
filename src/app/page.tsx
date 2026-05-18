@@ -11,9 +11,20 @@ const MORE_GALLERY_ITEMS: Array<
   | { type: "image"; src: string; alt: string; label: string }
   | { type: "testimonial"; source: string; sourceUrl: string; name: string; date: string; service?: string; quote: string }
 > = [
-  { type: "image", src: "/cut-1.jpg", alt: "Haircut by The Basement", label: "Basement cut" },
+  { type: "image", src: "/cut-11.jpg", alt: "Haircut by The Basement", label: "Basement cut" },
   { type: "testimonial", source: "Instagram", sourceUrl: BOOKSY_REVIEWS_URL, name: "Mohamed Y.", date: "May 2026", quote: "Bro it looks so good mashallah, like i was worried cuz normally other barbers wet my hair then the second it dries it frizzes up but no this held and it looks good with my glasses. I HATED these frames with a passion too bro 😭 Thanks again brother" },
+  { type: "image", src: "/cut-8.jpg", alt: "Haircut by The Basement", label: "Basement cut" },
+  { type: "testimonial", source: "Booksy", sourceUrl: BOOKSY_REVIEWS_URL, name: "Guillaume", date: "Mar 1, 2026", quote: "Bon service" },
+  { type: "image", src: "/cut-7.jpg", alt: "Haircut by The Basement", label: "Basement cut" },
+  { type: "testimonial", source: "Booksy", sourceUrl: BOOKSY_REVIEWS_URL, name: "Danielo", date: "Feb 22, 2026", quote: "TJ did a great job!" },
+  { type: "image", src: "/cut-6.jpg", alt: "Haircut by The Basement", label: "Basement cut" },
+  { type: "image", src: "/cut-9.jpg", alt: "Haircut by The Basement", label: "Basement cut" },
   { type: "image", src: "/cut-2.jpg", alt: "Haircut by The Basement", label: "Basement cut" },
+  { type: "image", src: "/cut-1.jpg", alt: "Haircut by The Basement", label: "Basement cut" },
+  
+  //<TestimonialCard source="Booksy" sourceUrl={BOOKSY_REVIEWS_URL} name="Guillaume" date="Mar 1, 2026" service="Haircut" quote="Bon service" />
+  //<TestimonialCard source="Booksy" sourceUrl={BOOKSY_REVIEWS_URL} name="Danielo" date="Feb 22, 2026" service="Haircut and Beard Trim" quote="TJ did a great job!" />
+  //<TestimonialCard source="Google" sourceUrl={GOOGLE_REVIEWS_URL} name="Danielo JB" date="Mar 2026" quote="T.J nailed it!" />
   //{ type: "image", src: "/cut-7.jpg", alt: "Haircut by The Basement", label: "Basement cut" },
 
   // Add extra gallery items here without changing the main testimonials grid.
@@ -379,16 +390,15 @@ function TestimonialsSection({
     <SectionShell id="testimonials" eyebrow="Testimonials" title="The cut should feel personal before it ever feels routine.">
       <div className="mobile-scroll-grid" style={cardGridStyle}>
         <TestimonialCard source="Booksy" sourceUrl={BOOKSY_REVIEWS_URL} name="Alvin" date="Mar 8, 2026" service="Haircut" quote="TJ remembered me from 2 and a half months ago. Did me a solid. Great guy, great cut." />
-        <TestimonialCard source="Booksy" sourceUrl={BOOKSY_REVIEWS_URL} name="Guillaume" date="Mar 1, 2026" service="Haircut" quote="Bon service" />
-        <TestimonialCard source="Booksy" sourceUrl={BOOKSY_REVIEWS_URL} name="Danielo" date="Feb 22, 2026" service="Haircut and Beard Trim" quote="TJ did a great job!" />
+        
         <TestimonialCard source="Booksy" sourceUrl={BOOKSY_REVIEWS_URL} name="Matthew" date="Feb 15, 2026" service="Haircut" quote="TJ making some fire beats and cuts. 10/10" />
         <TestimonialCard source="Google" sourceUrl={GOOGLE_REVIEWS_URL} name="Michael Grenier" date="Feb 2026" quote="Ossein and TJ are very attentive to details, offer a stand out customer service, always making sure their clients are fully satisfied! They offer a wide variety of services and are very talented. Come and check them out for yourselves, highly recommended!" />
         <TestimonialCard source="Google" sourceUrl={GOOGLE_REVIEWS_URL} name="Vytautas Budnikas" date="Apr 2026" quote="Great place, barber TJ is an awesome guy. Really liked the cut they gave me. Definitely worth your while." />
-        <TestimonialCard source="Google" sourceUrl={GOOGLE_REVIEWS_URL} name="Danielo JB" date="Mar 2026" quote="T.J nailed it!" />
+        
         <PhotoTile src="/cut-3.jpg" alt="Haircut by The Basement" label="Basement cut" onExpand={onExpandImage} />
-        <PhotoTile src="/cut-7.jpg" alt="Haircut by The Basement" label="Basement cut" onExpand={onExpandImage} />
-        <PhotoTile src="/cut-6.jpg" alt="Haircut by The Basement" label="Basement cut" onExpand={onExpandImage} />
+        <PhotoTile src="/cut-10.jpg" alt="Haircut by The Basement" label="Basement cut" onExpand={onExpandImage} />
         <PhotoTile src="/cut-4.jpg" alt="Haircut by The Basement" label="Basement cut" onExpand={onExpandImage} />
+        
         <PhotoTile src="/cut-5.jpg" alt="Haircut by The Basement" label="Basement cut" onExpand={onExpandImage} />
       </div>
 
