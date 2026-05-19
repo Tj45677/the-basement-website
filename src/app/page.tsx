@@ -206,6 +206,40 @@ export default function Page() {
         >
           Scroll to enter
         </motion.div>
+            </section>
+
+      <section
+        style={{
+          position: "relative",
+          marginTop: "-120px",
+          zIndex: 5,
+          padding: "0 24px",
+        }}
+      >
+        <div
+          style={{
+            maxWidth: "1100px",
+            margin: "0 auto",
+            borderRadius: "28px",
+            overflow: "hidden",
+            boxShadow: "0 25px 70px rgba(0,0,0,0.45)",
+            border: "1px solid rgba(255,255,255,0.08)",
+            background: "#000",
+          }}
+        >
+          <video
+            controls
+            playsInline
+            preload="metadata"
+            poster="/video-thumbnail.png"
+            style={{
+              width: "100%",
+              display: "block",
+            }}
+          >
+            <source src="/promo-video.mp4" type="video/mp4" />
+          </video>
+        </div>
       </section>
 
       <DesktopHeader opacity={headerOpacity} y={headerY} />
