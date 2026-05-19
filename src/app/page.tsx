@@ -237,7 +237,7 @@ export default function Page() {
               display: "block",
             }}
           >
-            <source src="/promo-video.mp4" type="video/mp4" />
+            <source src="/Promo-Video.mp4" type="video/mp4" />
           </video>
         </div>
       </section>
